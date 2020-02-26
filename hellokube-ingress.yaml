@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+        nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: ingress-hello-world
+spec:
+  rules:
+  - host: passport.evergreen.com
+    http:
+        paths:
+          - path: /Client1
+            backend:
+              serviceName: docker-sample-jsp
+              servicePort: 8788
+          - path: /Client2
+            backend:
+              serviceName: docker-hello-greeting
+              servicePort: 8688
+
+        
